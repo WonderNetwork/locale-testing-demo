@@ -8,8 +8,8 @@ class WonderProxyLocaleTest extends PHPUnit_Framework_TestCase {
     protected $selenium = 'http://localhost:4444/wd/hub';
     /** @var \RemoteWebDriver */
     protected $driver;
-    /** @var $url AUT */
-    protected $url = 'https://wonderproxy.com';
+    /** @var $url web page to be tested */
+    protected $url = 'http://wondernetwork.com/geotest';
 
     protected function proxied($proxy) {
         $capabilities = DesiredCapabilities::phantomjs();
@@ -20,6 +20,7 @@ class WonderProxyLocaleTest extends PHPUnit_Framework_TestCase {
             'sslProxy' => $proxy,
             'noProxy' => null
         ]);
+        $capabilities->setCapability('phantomjs.cli.args', ['--proxy-auth='.PROXY_USER.':'.PROXY_PASS]);
         return RemoteWebDriver::create($this->selenium, $capabilities);
     }
 
@@ -34,7 +35,7 @@ class WonderProxyLocaleTest extends PHPUnit_Framework_TestCase {
         $this->driver = $this->proxied($proxy);
 
         $this->driver->get($this->url);
-        $this->assertContains('WonderProxy', $this->driver->getTitle());
+        $this->assertContains('WonderNetwork', $this->driver->getTitle());
     }
 
     /**
@@ -44,7 +45,7 @@ class WonderProxyLocaleTest extends PHPUnit_Framework_TestCase {
         $this->driver = $this->proxied($proxy);
 
         $this->driver->get($this->url);
-        $search = $this->driver->findElement(WebDriverBy::id('user-location'));
+        $search = $this->driver->findElement(WebDriverBy::id('user-city'));
         $this->assertContains($expected, $search->getText());
     }
 
@@ -58,9 +59,9 @@ class WonderProxyLocaleTest extends PHPUnit_Framework_TestCase {
 
     public function userLocations() {
         return [
-            ['albuquerque.wonderproxy.com:11000', 'New Mexico'],
-            ['toronto.wonderproxy.com:11000', 'Ontario'],
-            ['vancouver.wonderproxy.com:11000', 'British Columbia'],
+            ['albuquerque.wonderproxy.com:11000', 'Albuquerque'],
+            ['toronto.wonderproxy.com:11000', 'Toronto'],
+            ['vancouver.wonderproxy.com:11000', 'Vancouver'],
         ];
     }
 }

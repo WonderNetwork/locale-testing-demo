@@ -22,6 +22,8 @@ Setup
    $ curl -sS https://getcomposer.org/installer | php
    $ php composer.phar install
    ```
+4. Make sure you update your WonderProxy username and password in
+   `phpunit.xml` (look for the PROXY_USER and PROXY_PASS values).
 
 Running the tests
 -----------------
