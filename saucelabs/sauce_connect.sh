@@ -7,8 +7,8 @@ if [ -z "$@" ]; then
 fi
 
 # check for sauce creds
-if [ -z "$SAUCE_CONNECT_USER" ] || [ -z "$SAUCE_CONNECT_KEY" ]; then
-    echo "You need to set SAUCE_CONNECT_USER and SAUCE_CONNECT_KEY"
+if [ -z "$SAUCE_USERNAME" ] || [ -z "$SAUCE_ACCESS_KEY" ]; then
+    echo "You need to set SAUCE_USERNAME and SAUCE_ACCESS_KEY"
     exit 1
 fi
 
@@ -51,7 +51,7 @@ for server; do
         $saucedir/$server.* for logs and output.
 
     sc \
-       -u $SAUCE_CONNECT_USER -k $SAUCE_CONNECT_KEY \
+       -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY \
        -p $server.wonderproxy.com:11000 \
        -w $WONDERPROXY_USER:$WONDERPROXY_PASS \
        -T -l $saucedir/$server.log -i $server \
