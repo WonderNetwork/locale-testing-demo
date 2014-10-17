@@ -18,6 +18,13 @@ supposed to from a few different places around the world.
    instructions](http://phantomjs.org/download.html), and make sure the
    `phantomjs` executable ends up in your PATH (e.g. symlink it to
    `/usr/bin/phantomjs`).
+3. The Selenium test demos will pull your WonderProxy credentials from
+   environment variables:
+
+   ```
+   $ export WONDERPROXY_USER=<your WonderProxy username>
+   $ export WONDERPROXY_PASS=<your WonderProxy password>
+   ```
 
 ## Running the tests
 
@@ -32,11 +39,7 @@ supposed to from a few different places around the world.
    $ php composer.phar install
    ```
    
-2. You'll use the PHPUnit configuration file (`./php/phpunit.xml`) to record
-   your WonderProxy username and password. Look for the `PROXY_USER` and
-   `PROXY_PASS` values.
-
-3. Spin up your Selenium server and fire away!
+2. Spin up your Selenium server and fire away!
 
    ```
    $ cd path/to/locale-testing-demo/selenium/php
@@ -50,6 +53,20 @@ This PHP demo was shamelessly ripped from
 [php-webdriver-demo](https://github.com/DavertMik/php-webdriver-demo) for
 [Selenium](http://www.seleniumhq.org), which he blogged about at
 http://codeception.com/11-12-2013/working-with-phpunit-and-selenium-webdriver.html.
+
+### Python (`./python`)
+
+1. The Python demo runs on Python 3.2+. It might work on earlier versions, but
+   it's not tested!
+2. Follow [Selenium's
+   instructions](http://selenium-python.readthedocs.org/installation.html) to
+   set up the Python/Selenium bindings.
+3. Make sure your Selenium server is still running, and off you go!
+   
+   ```
+   $ cd path/to/locale-testing-demo/selenium/python
+   $ python3 test_wonderproxy.py
+   ```
 
 ### Other languages
 

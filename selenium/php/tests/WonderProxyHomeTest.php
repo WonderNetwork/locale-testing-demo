@@ -20,7 +20,9 @@ class WonderProxyLocaleTest extends PHPUnit_Framework_TestCase {
             'sslProxy' => $proxy,
             'noProxy' => null
         ]);
-        $capabilities->setCapability('phantomjs.cli.args', ['--proxy-auth='.PROXY_USER.':'.PROXY_PASS]);
+        $capabilities->setCapability(
+            'phantomjs.cli.args',
+            ['--proxy-auth='.getenv('WONDERPROXY_USER').':'.getenv('WONDERPROXY_PASS')]);
         return RemoteWebDriver::create($this->selenium, $capabilities);
     }
 

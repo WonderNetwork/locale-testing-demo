@@ -4,8 +4,4 @@
       <directory>tests</directory>
      </testsuite>
     </testsuites>
-    <php>
-        <const name="PROXY_USER" value="YOUR WONDERPROXY USERNAME HERE" />
-        <const name="PROXY_PASS" value="YOUR WONDERPROXY PASSWORD HERE" />
-    </php>
 </phpunit>
