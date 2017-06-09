@@ -11,8 +11,8 @@ supposed to from a few different places around the world.
    arguments:
 
     ```
-    $ wget https://selenium-release.storage.googleapis.com/2.43/selenium-server-standalone-2.43.1.jar
-    $ java -jar selenium-server-standalone-2.43.1.jar
+    $ wget http://selenium-release.storage.googleapis.com/3.4/selenium-server-standalone-3.4.0.jar
+    $ java -jar selenium-server-standalone-3.4.0.jar
     ```
 2. You'll also need [PhantomJS](http://phantomjs.org). Follow the [download
    instructions](http://phantomjs.org/download.html), and make sure the
@@ -29,6 +29,8 @@ supposed to from a few different places around the world.
 ## Running the tests
 
 ### PHP (`./php`)
+
+The PHP demo has been tested on PHP 5.6 and 7.1.
 
 1. The PHP demo uses [Composer](https://getcomposer.org) to organize its
    dependencies:
