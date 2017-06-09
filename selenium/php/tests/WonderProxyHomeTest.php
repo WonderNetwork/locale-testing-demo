@@ -1,28 +1,31 @@
 <?php
+
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\Remote\WebDriverCapabilityType;
+use Facebook\WebDriver\WebDriverBy;
+
 class WonderProxyLocaleTest extends PHPUnit_Framework_TestCase {
 
     use WebDriverAssertions;
     use WebDriverDevelop;
 
-    /** @var $selenium Selenium server */
+    /** @var $selenium string Selenium server */
     protected $selenium = 'http://localhost:4444/wd/hub';
-    /** @var \RemoteWebDriver */
+    /** @var RemoteWebDriver */
     protected $driver;
-    /** @var $url web page to be tested */
+    /** @var $url string web page to be tested */
     protected $url = 'http://wondernetwork.com/geotest';
 
     protected function proxied($proxy) {
         $capabilities = DesiredCapabilities::phantomjs();
-        $capabilities->setCapability(WebDriverCapabilityType::PROXY, [
-            'proxyType' => 'MANUAL',
-            'httpProxy' => $proxy,
-            'ftpProxy' => $proxy,
-            'sslProxy' => $proxy,
-            'noProxy' => null
-        ]);
         $capabilities->setCapability(
             'phantomjs.cli.args',
-            ['--proxy-auth='.getenv('WONDERPROXY_USER').':'.getenv('WONDERPROXY_PASS')]);
+            [
+                "--proxy=$proxy",
+                '--proxy-type=http',
+                '--proxy-auth='.getenv('WONDERPROXY_USER').':'.getenv('WONDERPROXY_PASS')
+            ]);
         return RemoteWebDriver::create($this->selenium, $capabilities);
     }
 
