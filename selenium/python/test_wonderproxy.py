@@ -13,14 +13,9 @@ class WonderProxyTest(unittest.TestCase):
 
     def proxied(self, proxy):
         capabilities = DesiredCapabilities.PHANTOMJS.copy()
-        capabilities['proxy'] = {
-            'proxyType': 'MANUAL',
-            'httpProxy': proxy,
-            'ftpProxy': proxy,
-            'sslProxy': proxy,
-            'noProxy': None
-        }
         capabilities['phantomjs.cli.args'] = [
+            '--proxy=' + proxy,
+            '--proxy-type=http',
             '--proxy-auth=' + evar.get('WONDERPROXY_USER') + ':' + evar.get('WONDERPROXY_PASS')
         ]
 
