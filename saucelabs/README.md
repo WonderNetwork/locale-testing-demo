@@ -1,14 +1,14 @@
 [SauceLabs](https://saucelabs.com/) offers testing-as-a-service: You give them
 your [Selenium](http://seleniumhq.org) tests, they run them on a [crazily wide
 variety of platforms](https://saucelabs.com/platforms). Using [Sauce
-Connect](https://docs.saucelabs.com/reference/sauce-connect/),
+Connect](https://wiki.saucelabs.com/display/DOCS/Sauce+Connect+Proxy),
 [WonderProxy](https://wonderproxy.com) can add localization testing to that
 mix.
 
 ## Setup
 
 1. Follow the [basic setup
-   instructions](https://docs.saucelabs.com/reference/sauce-connect/#basic-setup)
+   instructions](https://wiki.saucelabs.com/display/DOCS/Setting+Up+Sauce+Connect+Proxy)
    for Sauce Connect. Make sure the `sc` binary ends up in your `PATH`.
 2. Create environment variables for your SauceLabs credentials.
    
@@ -55,7 +55,7 @@ $ ./sauce_connect.sh albuquerque telaviv vancouver
    $ php composer.phar install
    ```
 2. Running Composer will pull in the
-   [Sausage](https://docs.saucelabs.com/tutorials/php/#getting-started-with-the-sausage-library)
+   [Sausage](https://github.com/jlipps/sausage)
    library, which provides a convenient tool for running multiple tests in
    parallel.
 
