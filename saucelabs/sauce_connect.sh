@@ -56,7 +56,7 @@ for server; do
        -u "$SAUCE_USERNAME" -k "$SAUCE_ACCESS_KEY" \
        -p "$server.wonderproxy.com:11000" \
        -w "$WONDERPROXY_USER:$WONDERPROXY_PASS" \
-       -T -l "$saucedir/$server.log" -i "$server" \
+       -l "$saucedir/$server.log" -i "$server" \
        --pidfile "$pidfile" \
        --scproxy-port "$scport" -P "$seport" \
        > "$saucedir/$server.output.log" 2>&1 &
