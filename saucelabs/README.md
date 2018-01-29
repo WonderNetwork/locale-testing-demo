@@ -23,6 +23,13 @@ mix.
    $ export WONDERPROXY_USER=<your WonderProxy username>
    $ export WONDERPROXY_PASS=<your WonderProxy password>
    ```
+5. Retrieve the dependencies for the demo PHPUnit tests. It uses [Composer](https://getcomposer.org) to organize its
+   dependencies, so you'll need to [have that installed first](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
+
+   ```
+   $ cd ./php
+   $ composer install
+   ```
 
 ## Creating Sauce Connect Tunnels
 
@@ -46,21 +53,10 @@ $ ./sauce_connect.sh albuquerque telaviv vancouver
 
 ### PHP (`./php`)
 
-1. The PHP demo uses [Composer](https://getcomposer.org) to organize its
-   dependencies:
+Running Composer (above) will pull in the [Sausage](https://github.com/jlipps/sausage) library, which provides a convenient tool for running multiple tests in parallel.
 
    ```
-   $ cd path/to/locale-testing-demo/saucelabs/php
-   $ curl -sS https://getcomposer.org/installer | php
-   $ php composer.phar install
-   ```
-2. Running Composer will pull in the
-   [Sausage](https://github.com/jlipps/sausage)
-   library, which provides a convenient tool for running multiple tests in
-   parallel.
-
-   ```
-   $ cd path/to/locale-testing-demo/saucelabs/php
+   $ cd ./php
 
    # run up to eight tests in parallel
    $ ./vendor/bin/paratest -p 8 -f --phpunit=vendor/bin/phpunit tests/
