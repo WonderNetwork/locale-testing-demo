@@ -1,5 +1,5 @@
-[SauceLabs](https://saucelabs.com/) offers testing-as-a-service: You give them
-your [Selenium](http://seleniumhq.org) tests, they run them on a [crazily wide
+[SauceLabs](https://saucelabs.com/) offers testing-as-a-service: You point
+your [Selenium](http://seleniumhq.org) tests at them, they run the tests on a [crazily wide
 variety of platforms](https://saucelabs.com/platforms). Using [Sauce
 Connect](https://wiki.saucelabs.com/display/DOCS/Sauce+Connect+Proxy),
 [WonderProxy](https://wonderproxy.com) can add localization testing to that
