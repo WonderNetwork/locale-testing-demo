@@ -16,6 +16,13 @@ if (!$env:wonderproxy_user -or !$env:wonderproxy_pass) {
     exit 2
 }
 
+# check for the sc binary in the current directory
+$bin = join-path $pwd "sc.exe"
+if (!(test-path "$bin")) {
+    echo "Can't find the Sauce Connect binary (sc), make sure it's in your current directory"
+    exit 3
+}
+
 # starting ports for sauce connect tunnels, incremented by one for each 
 # tunnel started
 # https://docs.saucelabs.com/reference/sauce-connect/#on-the-same-machine
