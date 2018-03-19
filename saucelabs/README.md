@@ -7,6 +7,8 @@ mix.
 
 ## Setup
 
+### Mac OSX and Linux
+
 1. Follow the [basic setup
    instructions](https://wiki.saucelabs.com/display/DOCS/Setting+Up+Sauce+Connect+Proxy)
    for Sauce Connect. Make sure the `sc` binary ends up in your `PATH`.
@@ -31,7 +33,23 @@ mix.
    $ composer install
    ```
 
+### Windows 10
+
+1. Follow the [basic setup
+   instructions](https://wiki.saucelabs.com/display/DOCS/Setting+Up+Sauce+Connect+Proxy)
+   for Sauce Connect. Copy the Sauce Connect executable (at `bin/sc.exe`) to
+   your current directory.
+2. Create environment variables for your SauceLabs credentials. (Use the
+   [instructions from Sauce
+   Labs](https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Environment+Variables+for+Authentication+Credentials)
+   if you're not sure how to do that.)
+3. Create environment variables for your WonderProxy credentials.
+   `WONDERPROXY_USER` must be your WonderProxy username, and
+   `WONDERPROXY_PASS` must be your WonderProxy password.
+
 ## Creating Sauce Connect Tunnels
+
+### Mac OSX and Linux
 
 The `sauce_connect.sh` helper script will create one tunnel for each
 WonderProxy server name listed as an argument. For example:
@@ -47,6 +65,29 @@ so you'll need three tunnels:
 
 ```
 $ ./sauce_connect.sh albuquerque telaviv vancouver
+```
+
+### Windows 10
+
+The helper scripts for Windows must be run in PowerShell, so [open a PowerShell
+console window](https://docs.microsoft.com/en-us/powershell/scripting/setup/starting-windows-powershell?view=powershell-6)
+and [change to the directory](https://docs.microsoft.com/en-us/powershell/scripting/getting-started/cookbooks/managing-current-location?view=powershell-6#setting-your-current-location-set-location)
+that holds this demo.
+
+The `sauce_connect.ps1` helper script will create one tunnel for each
+WonderProxy server name listed as an argument. For example:
+
+```
+# creates two tunnels: one for telaviv.wonderproxy.com, and one for
+# london.wonderproxy.com
+> .\sauce_connect.ps1 telaviv london
+```
+
+The demos here use the Albquerque, Tel Aviv and Vancouver WonderProxy servers,
+so you'll need three tunnels:
+
+```
+> .\sauce_connect.sh albuquerque telaviv vancouver
 ```
 
 ## Running the tests
@@ -68,6 +109,8 @@ Coming soon!
 
 ## Closing the Sauce Connect Tunnels
 
+### Mac OSX and Linux
+
 The `sauce_disconnect.sh` helper script will close the tunnel for each
 WonderProxy server name listed as an argument, as well as clean up any logs and
 output files.
@@ -75,4 +118,15 @@ output files.
 ```
 # close three tunnels
 $ ./sauce_disconnect.sh albuquerque telaviv vancouver
+```
+
+### Windows 10
+
+The `sauce_disconnect.ps1` helper script will close the tunnel for each
+WonderProxy server name listed as an argument, as well as clean up any logs and
+output files.
+
+```
+# close three tunnels
+$ .\sauce_disconnect.ps1 albuquerque telaviv vancouver
 ```
