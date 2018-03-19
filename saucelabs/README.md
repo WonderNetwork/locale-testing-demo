@@ -25,13 +25,6 @@ mix.
    $ export WONDERPROXY_USER=<your WonderProxy username>
    $ export WONDERPROXY_PASS=<your WonderProxy password>
    ```
-5. Retrieve the dependencies for the demo PHPUnit tests. It uses [Composer](https://getcomposer.org) to organize its
-   dependencies, so you'll need to [have that installed first](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
-
-   ```
-   $ cd ./php
-   $ composer install
-   ```
 
 ### Windows 10
 
@@ -97,19 +90,34 @@ The automated tests in this demo have only been tested on Mac OSX and Linux. If
 you're running Windows, the tunnels are still available for [manual testing on
 Sauce Labs](https://wiki.saucelabs.com/display/DOCS/Running+Live+Website+Tests)!
 
-If you've already installed [PHP](https://php.net) and
-[Composer](https://getcomposer.org) on your Windows 10 system, you should be
-able to follow along below.
+If you've already installed [PHP](https://php.net) on your Windows 10 system,
+you should be able to follow along below.
 
 ### PHP (`./php`)
 
-Running Composer (above) will pull in the [Sausage](https://github.com/jlipps/sausage) library, which provides a convenient tool for running multiple tests in parallel.
+The PHP demo uses [Composer](https://getcomposer.org) to organize its
+dependencies, so you'll need to
+[have that installed first](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
+
+1. Use [Composer](https://getcomposer.org) to install the Sauce Labs
+   [Sausage](https://github.com/jlipps/sausage) library, which bundles
+   [PHPUnit](https://phpunit.d) with some extra helpers:
 
    ```
    $ cd ./php
+   $ composer install
+   ```
+2. Configure the Sausage library with your Sauce Labs credentials:
+   
+   ```
+   $ ./vendor/bin/sauce_config "$SAUCE_USERNAME" "$SAUCE_ACCESS_KEY"
+   ```
+3. Sausage provides the `paratest` tool for running multiple tests in
+   parallel. Set `--processes` to the number of parallel tests you want to run.
+   We'll use `10` here:
 
-   # run up to eight tests in parallel
-   $ ./vendor/bin/paratest -p 8 -f --phpunit=vendor/bin/phpunit tests/
+   ```
+   $ ./vendor/bin/paratest --processes 10 --functional tests/
    ```
 
 ### Other languages
