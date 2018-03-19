@@ -91,7 +91,15 @@ so you'll need three tunnels:
 > .\sauce_connect.sh albuquerque telaviv vancouver
 ```
 
-## Running the tests
+## Running the tests (Mac OSX and Linux only)
+
+The automated tests in this demo have only been tested on Mac OSX and Linux. If
+you're running Windows, the tunnels are still available for [manual testing on
+Sauce Labs](https://wiki.saucelabs.com/display/DOCS/Running+Live+Website+Tests)!
+
+If you've already installed [PHP](https://php.net) and
+[Composer](https://getcomposer.org) on your Windows 10 system, you should be
+able to follow along below.
 
 ### PHP (`./php`)
 
