@@ -42,7 +42,8 @@ mix.
 2. Create environment variables for your SauceLabs credentials. (Use the
    [instructions from Sauce
    Labs](https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Environment+Variables+for+Authentication+Credentials)
-   if you're not sure how to do that.)
+   if you're not sure how to do that.) `SAUCE_USERNAME` must be your Sauce Labs
+   username, and `SAUCE_ACCESS_KEY` must be your Sauce Labs access key.
 3. Create environment variables for your WonderProxy credentials.
    `WONDERPROXY_USER` must be your WonderProxy username, and
    `WONDERPROXY_PASS` must be your WonderProxy password.
