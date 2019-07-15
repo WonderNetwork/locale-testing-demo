@@ -1,5 +1,6 @@
 {
     "require": {
-        "sauce/sausage": ">=0.15.2"
+        "sauce/sausage": "0.17.*",
+        "phpunit/phpunit": "^5"
     }
 }
