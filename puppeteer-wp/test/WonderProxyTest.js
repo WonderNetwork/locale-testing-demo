@@ -1,14 +1,27 @@
 // noinspection JSUnusedLocalSymbols
 const should = require('chai').should();
 const puppeteer = require('puppeteer');
+const proxyChain = require('proxy-chain');
+
+async function getProxiedBrowser(server, port, options={}) {
+  // make sure to set PROXY_USER and PROXY_PASS in your environment:
+  const user = process.env.PROXY_USER;
+  const password = process.env.PROXY_PASS;
+
+  const proxy = await proxyChain.anonymizeProxy(`http://${user}:${password}@${server}:${port}`);
+  Object.assign(options, { args: [`--proxy-server=${proxy}`] });
+  console.log(options, user, password);
+  return await puppeteer.launch(options);
+}
 
 describe('WonderProxy website', function () {
-  this.timeout(10000);  // increase Mocha's default timeout
+  this.timeout(20000);  // increase Mocha's default timeout
   describe('Home Page', function () {
     describe('Title', function () {
       it('should be "Localization testing with confidence - WonderProxy"', async function () {
-        const browser = await puppeteer.launch();
-        //const browser = await puppeteer.launch({ headless: false, slowMo: 250 });
+        //const browser = await getProxiedBrowser('lansing.wonderproxy.com', 10000);
+        const browser = await getProxiedBrowser('lansing.wonderproxy.com', 10000, { headless: false, slowMo: 250 });
+
         const page = await browser.newPage();
         await page.goto('https://wonderproxy.com');
         const title = await page.title();

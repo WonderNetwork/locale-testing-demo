@@ -25,6 +25,15 @@
     * https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
   
 
+
+# Apify proxy-chain:
+* Squid is being elusive, Will still work on it but having some issues
+* stop-gap alternative is proxy-chain which is Node only
+* https://blog.apify.com/how-to-make-headless-chrome-and-puppeteer-use-a-proxy-server-with-authentication-249a21a79212/
+* https://www.npmjs.com/package/proxy-chain
+
+
+
   
 # Squid proxy information
 * Puppeteer supports proxy configuration but has less support for authenticated proxies
