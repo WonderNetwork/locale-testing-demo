@@ -1,0 +1,16 @@
+{
+  "name": "puppeteer-wp",
+  "version": "1.0.0",
+  "description": "Puppeteer and Wonder Proxy integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.0.3",
+    "puppeteer": "^10.2.0"
+  }
+}
