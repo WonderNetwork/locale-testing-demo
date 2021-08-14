@@ -81,9 +81,10 @@ describe('Puppeteer tests', function () {
     ];
 
     for (const location of locations) {
-      it(`should have location specific text for ${location}`, async function () {
-        //const browser = await getProxiedBrowser(location.server, 10000, {devtools: true, headless: false, slowMo: 250});
-        const browser = await getProxiedBrowser(location.server, 10000, {headless: false, slowMo: 250});
+      it(`should have location specific text for ${location.location}`, async function () {
+        const browser = await getProxiedBrowser(location.server, 10000);
+        // How to pass in various options:
+        // const browser = await getProxiedBrowser(location.server, 10000, {devtools: true, headless: false, slowMo: 250});
         const page = await getAuthenticatedPage(browser);
         await page.goto('https://google.com');
 

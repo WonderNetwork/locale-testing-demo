@@ -4,6 +4,7 @@
   * set project name, etc, skip if adding test to existing project
   * when it asks the command to run the tests: `mocha`
 * `npx gitignore node`
+  * this adds a reasonable default .gitignore file
 * `npm i -D puppeteer`
   * this will download a browser to work with (120mb or so)
   * alternative is puppeteer-core which is out of scope
@@ -41,5 +42,6 @@
     * Username and password are taken from the environment, set these in the environment before running the test
       * This is to keep them from being checked in to source control.
       * when setting credentials in IDE configuration make sure that is not being checked into source control.
-  
+  * Note that Venice and Amsterdam have cookie acceptance dialogs that obscure the buttons, so while the buttons are there they are not visible to a human user until the dialog is accepted.
+
   
