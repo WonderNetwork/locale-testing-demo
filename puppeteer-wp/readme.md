@@ -19,38 +19,27 @@
   * Puppeteer:
     * https://github.com/puppeteer/puppeteer
     * https://pptr.dev/
+  * Puppeteer 'page.evaluate' potential pitfall:
+    * Some things can't be returned from browser context it is best to transform to a simple data structure before returning.
+      * https://github.com/puppeteer/puppeteer/blob/v1.3.0/docs/api.md#pageevaluatepagefunction-args
+        * "If the function passed to the page.evaluate returns a non-Serializable value, then page.evaluate resolves to undefined."
+      * https://github.com/puppeteer/puppeteer/issues/2418
   * CSS Selectors:
     * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
     * https://www.checklyhq.com/learn/headless/basics-selectors/
     * https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
+* Integrating Wonder Proxy
+  * Proxy servers must be added in the WP portal before running the test
+  * Setting proxy
+    * Add `--proxyserver=http://<server_address>:<port>` to the `args` array when launching Puppeteer
+    * See the `getProxiedBrowser` function for an example of this.
+  * Authenticating to proxy
+    * Use the `page.authenticate` function to pass in credentials
+    * See the `getAuthenticatedPage` function for an example of this.
+    * When testing against a site that uses basic-auth, this may not be a viable solution.
+      * Using Squid or another intermediate proxy adding proxy authentication may be a solution in this advanced use case.
+    * Username and password are taken from the environment, set these in the environment before running the test
+      * This is to keep them from being checked in to source control.
+      * when setting credentials in IDE configuration make sure that is not being checked into source control.
   
-
-
-# Apify proxy-chain:
-* Squid is being elusive, Will still work on it but having some issues
-* stop-gap alternative is proxy-chain which is Node only
-* https://blog.apify.com/how-to-make-headless-chrome-and-puppeteer-use-a-proxy-server-with-authentication-249a21a79212/
-* https://www.npmjs.com/package/proxy-chain
-
-
-
   
-# Squid proxy information
-* Puppeteer supports proxy configuration but has less support for authenticated proxies
-* one option is to use page.authenticate() but this will get complex if the site under test also required authentication
-* the other option is to use a local proxy which will add the authentication
-* Squid in non-caching mode will be used as the local proxy for this article
-
-# Install Squid - todo
-* linux - distribution specific
-  * Debian/Ubuntu
-  * RH/Fedora/CentOS
-* brew
-* docker
-* Windows - untested ymmv
-
-# Squid configuration - todo
-
-# Running Squid - todo
-
-
