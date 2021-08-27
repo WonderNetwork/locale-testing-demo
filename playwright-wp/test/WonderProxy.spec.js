@@ -24,16 +24,22 @@ for (const serverName of serverNames) {
 
     // evaluate list of server status and turn it into an array of name and status
     const statusList = await page.evaluate((selector) => {
+      // This will not crash if the queried element is not found on the page:
+      const safeQueryText = (element, query) => {
+        const result = element.querySelector(query);
+        return result ? result.textContent : 'unable to locate element';
+      }
       // This is evaluated in the context of the browser which allows cool tricks but can be confusing.
       const statusElements = Array.from(document.querySelectorAll(selector));
       return statusElements.map(statusElement => {
-        const name = statusElement.querySelector('span.title.is-block > a').textContent;
-        const status = statusElement.querySelector('span.server-status.is-up').textContent;
+        const name = safeQueryText(statusElement, 'span.title.is-block > a');
+        const status = safeQueryText(statusElement,'span.server-status.is-up');
         return {name, status};
       });
     }, statusListSelector);
 
-    const status = statusList.find(s => s.name === serverName).status;
+    const serverStatus = statusList.find(s => s.name === serverName);
+    const status = serverStatus ? serverStatus.status : 'unknown';
     expect(status).toBe('up');
   });
 }
