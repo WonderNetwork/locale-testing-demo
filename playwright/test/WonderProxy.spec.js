@@ -8,12 +8,17 @@ const locations = [
 
 for (const location of locations) {
     test.describe(`The WonderNetwork Geotest page from ${location.server}`, () => {
+        test.skip(
+            !process.env.WONDERPROXY_USER || !process.env.WONDERPROXY_USER,
+            'Proxy credentials are missing'
+        );
+
         // use the proxy for each test
         test.use({
             proxy: {
                 server: `http://${location.server}`,
-                username: process.env.PROXY_USER,
-                password: process.env.PROXY_PASS
+                username: process.env.WONDERPROXY_USER,
+                password: process.env.WONDERPROXY_PASS
             }
         });
 
