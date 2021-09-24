@@ -1,47 +1,79 @@
-# Getting started with Puppeteer
-* Puppeteer needs Node v10.18.1 or higher (see package.json for reference)
-* `npm init`
-  * set project name, etc, skip if adding test to existing project
-  * when it asks the command to run the tests: `mocha`
-* `npx gitignore node`
-  * this adds a reasonable default .gitignore file
-* `npm i -D puppeteer`
-  * this will download a browser to work with (120mb or so)
-  * alternative is puppeteer-core which is out of scope
-* `npm i -D mocha chai`
-  * test framework stuff
-  * these could be combined with puppeteer into a single command for installing the dependencies
-* write tests
-  * create directory: `test`
-  * create file: `WonderProxyTest.js`
-* run tests
-  * `npm test`
-* more docs:
-  * Puppeteer:
-    * https://github.com/puppeteer/puppeteer
-    * https://pptr.dev/
-  * Puppeteer 'page.evaluate' potential pitfall:
-    * Some things can't be returned from browser context it is best to transform to a simple data structure before returning.
-      * https://github.com/puppeteer/puppeteer/blob/v1.3.0/docs/api.md#pageevaluatepagefunction-args
-        * "If the function passed to the page.evaluate returns a non-Serializable value, then page.evaluate resolves to undefined."
-      * https://github.com/puppeteer/puppeteer/issues/2418
-  * CSS Selectors:
-    * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
-    * https://www.checklyhq.com/learn/headless/basics-selectors/
-    * https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
-* Integrating Wonder Proxy
-  * Proxy servers must be added in the WP portal before running the test
-  * Setting proxy
-    * Add `--proxyserver=http://<server_address>:<port>` to the `args` array when launching Puppeteer
-    * See the `getProxiedBrowser` function for an example of this.
-  * Authenticating to proxy
-    * Use the `page.authenticate` function to pass in credentials
-    * See the `getAuthenticatedPage` function for an example of this.
-    * When testing against a site that uses basic-auth, this may not be a viable solution.
-      * Using Squid or another intermediate proxy adding proxy authentication may be a solution in this advanced use case.
-    * Username and password are taken from the environment, set these in the environment before running the test
-      * This is to keep them from being checked in to source control.
-      * when setting credentials in IDE configuration make sure that is not being checked into source control.
-  * Note that Venice and Amsterdam have cookie acceptance dialogs that obscure the buttons, so while the buttons are there they are not visible to a human user until the dialog is accepted.
+These tests use [Puppeteer](https://pptr.dev) and
+[WonderProxy](https://wonderproxy.com) to make sure a location-aware
+[WonderNetwork website](https://wondernetwork.com/geotest) looks the way it's
+supposed to from a few different places around the world.
 
-  
+## Setup
+
+1. Playwright needs NodeJS v10 or higher (see `package.json` for reference).
+2. If you're setting up a new project instead of using our
+   pre-built `package.json`:
+3. Initialize `npm`:
+   ```
+   $ npm init
+   ```
+   The command to run tests should be `jest`
+4. Create a reasonable `.gitignore` file:
+   ```
+   $ npx gitignore node
+   ```
+5. Add Puppeteer and Jest, a test framework, as dev dependencies:
+   ```
+   $ npm install --save-dev puppeteer jest
+   ```
+6. Install the dependencies:
+   ```
+   $ npm install
+   ```
+7. The tests will pull your WonderProxy credentials from environment variables:
+   ```
+   $ export WONDERPROXY_USER=<your WonderProxy username>
+   $ export WONDERPROXY_PASS=<your WonderProxy password>
+   ```
+8. Our demo tests use the **Albquerque**, **Toronto**, and **Vancouver** WonderProxy
+   locations, so make sure
+   you've [added those servers to your account](https://wonderproxy.com/my/servers).
+
+## Write your tests
+
+Jest will automically run any test file in the `./test` directory that
+ends with `.spec.js`. In this demo, that's `./test/WonderProxy.spec.js`.
+
+## Run your tests
+
+This Puppeteer demo has been tested on with Puppeteer 10 and Jest 27, running
+on Node 14.
+
+The default `npm test` command is configured to run `jest`, so
+you can use that to run your tests:
+
+```
+$ npm test
+```
+
+Additional settings are available on
+the [command-line](https://jestjs.io/docs/cli).
+
+## Disclaimers
+
+#### Puppeteer `page.evaluate` potential pitfall
+
+* Some things can't be returned from browser context. It is best to transform to a simple data structure before returning.
+* https://github.com/puppeteer/puppeteer/blob/v1.3.0/docs/api.md#pageevaluatepagefunction-args
+
+> If the function passed to the `page.evaluate` returns a non-Serializable value, then `page.evaluate` resolves to undefined.
+
+* https://github.com/puppeteer/puppeteer/issues/2418
+
+#### Basic authentication
+
+This demo uses `page.authenticate` to send proxy credentials. If you need to
+test against a site that uses HTTP Basic authentication, this may not be a
+viable solution. Using Squid or another intermediate proxy to handle proxy server
+authentication may be a solution in this advanced use case.
+
+## Resources
+
+* https://github.com/puppeteer/puppeteer
+* https://pptr.dev/
+* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
