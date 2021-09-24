@@ -30,7 +30,7 @@ supposed to from a few different places around the world.
    $ export WONDERPROXY_USER=<your WonderProxy username>
    $ export WONDERPROXY_PASS=<your WonderProxy password>
    ```
-8. Our demo tests use the **Albquerque**, **Toronto**, and **Vancouver** WonderProxy
+8. Our demo tests use the **Albuquerque**, **Toronto**, and **Vancouver** WonderProxy
    locations, so make sure
    you've [added those servers to your account](https://wonderproxy.com/my/servers).
 

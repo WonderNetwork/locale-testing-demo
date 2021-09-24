@@ -54,7 +54,7 @@ WonderProxy server name that you specify as an argument. For example:
 $ ./sauce_connect.sh telaviv london
 ```
 
-The demos here use the Albquerque, Tel Aviv, and Vancouver WonderProxy servers,
+The demos here use the Albuquerque, Tel Aviv, and Vancouver WonderProxy servers,
 so you'll need three tunnels:
 
 ```
@@ -77,7 +77,7 @@ WonderProxy server name that you specify as an argument. For example:
 > .\sauce_connect.ps1 telaviv london
 ```
 
-The demos here use the Albquerque, Tel Aviv, and Vancouver WonderProxy servers,
+The demos here use the Albuquerque, Tel Aviv, and Vancouver WonderProxy servers,
 so you'll need three tunnels:
 
 ```
