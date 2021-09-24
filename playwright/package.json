@@ -1,0 +1,14 @@
+{
+  "name": "playwright-wp",
+  "version": "1.0.0",
+  "description": "Demo integration of Playwright and Wonder Proxy",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@playwright/test": "^1.14.0"
+  }
+}
