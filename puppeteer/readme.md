@@ -8,29 +8,29 @@ supposed to from a few different places around the world.
 1. Playwright needs NodeJS v10 or higher (see `package.json` for reference).
 2. If you're setting up a new project instead of using our
    pre-built `package.json`:
-3. Initialize `npm`:
-   ```
-   $ npm init
-   ```
-   The command to run tests should be `jest`
-4. Create a reasonable `.gitignore` file:
-   ```
-   $ npx gitignore node
-   ```
-5. Add Puppeteer and Jest, a test framework, as dev dependencies:
-   ```
-   $ npm install --save-dev puppeteer jest
-   ```
-6. Install the dependencies:
+   1. Initialize `npm`:
+      ```
+      $ npm init
+      ```
+      The command to run tests should be `jest`
+   2. Create a reasonable `.gitignore` file:
+      ```
+      $ npx gitignore node
+      ```
+   3. Add Puppeteer and Jest, a test framework, as dev dependencies:
+      ```
+      $ npm install --save-dev puppeteer jest
+      ```
+3. Install the dependencies:
    ```
    $ npm install
    ```
-7. The tests will pull your WonderProxy credentials from environment variables:
+4. The tests will pull your WonderProxy credentials from environment variables:
    ```
    $ export WONDERPROXY_USER=<your WonderProxy username>
    $ export WONDERPROXY_PASS=<your WonderProxy password>
    ```
-8. Our demo tests use the **Albuquerque**, **Toronto**, and **Vancouver** WonderProxy
+5. Our demo tests use the **Albuquerque**, **Toronto**, and **Vancouver** WonderProxy
    locations, so make sure
    you've [added those servers to your account](https://wonderproxy.com/my/servers).
 
@@ -58,12 +58,13 @@ the [command-line](https://jestjs.io/docs/cli).
 
 #### Puppeteer `page.evaluate` potential pitfall
 
-* Some things can't be returned from browser context. It is best to transform to a simple data structure before returning.
-* https://github.com/puppeteer/puppeteer/blob/v1.3.0/docs/api.md#pageevaluatepagefunction-args
+Some things can't be returned from browser context. It is best to transform to
+a simple data structure before returning. From
+https://pptr.dev/#?product=Puppeteer&show=api-pageevaluatepagefunction-args:
 
 > If the function passed to the `page.evaluate` returns a non-Serializable value, then `page.evaluate` resolves to undefined.
 
-* https://github.com/puppeteer/puppeteer/issues/2418
+See also https://github.com/puppeteer/puppeteer/issues/2418
 
 #### Basic authentication
 
