@@ -1,0 +1,14 @@
+{
+  "name": "puppeteer-wp",
+  "version": "1.0.0",
+  "description": "Puppeteer and WonderProxy integration",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "jest": "^27.2.1",
+    "puppeteer": "^10.2.0"
+  }
+}
