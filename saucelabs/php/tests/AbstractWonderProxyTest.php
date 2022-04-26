@@ -1,28 +1,61 @@
 <?php
 
-require_once 'vendor/autoload.php';
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverExpectedCondition;
+use PHPUnit\Framework\TestCase;
 
-abstract class AbstractWonderProxyTest extends Sauce\Sausage\WebDriverTestCase
-{
+abstract class AbstractWonderProxyTest extends TestCase {
+    protected string $targetUrl = 'https://wondernetwork.com/geotest';
+    protected RemoteWebDriver $driver;
 
-    protected $start_url = 'http://wondernetwork.com/geotest';
+    protected string $tunnel;
+    protected string $userCity;
 
-    /* the title should be the same regardless of locale */
-    public function testTitle()
-    {
-        $this->assertContains("WonderNetwork", $this->title());
+    public function __construct(?string $name = null, array $data = [], $dataName = '') {
+        parent::__construct($name, $data, $dataName);
+
+        $desiredCapabilities = DesiredCapabilities::firefox()
+            ->setPlatform('Windows 10')
+            ->setCapability('sauce:options', [
+                'username' => getenv('SAUCE_USERNAME'),
+                'accessKey' => getenv('SAUCE_ACCESS_KEY'),
+                'name' => $this->tunnel,
+                'tunnelIdentifier' => $this->tunnel,
+            ]);
+
+        $this->driver = RemoteWebDriver::create(
+            'https://ondemand.us-west-1.saucelabs.com/wd/hub',
+            $desiredCapabilities,
+            60000,
+            60000
+        );
     }
 
-    /** the user city should change depending on the location
-     *
-     * @dataProvider location
-     */ 
-    public function testLocation($location)
-    {
-        $city = $this->byId('user-city');
-        $this->assertTextPresent($location, $city);
+    public function onNotSuccessfulTest($e): void {
+        $this->driver->executeScript('sauce:job-result=failed');
+
+        parent::onNotSuccessfulTest($e);
     }
 
-    abstract public function location();
+    public function testPage() {
+        $this->driver->get($this->targetUrl);
 
+        $this->assertStringContainsString(
+            "WonderNetwork",
+            $this->driver->getTitle()
+        );
+
+        $finder = WebDriverBy::id('user-city');
+        $this->driver->wait(60, 1000)
+                     ->until(WebDriverExpectedCondition::presenceOfElementLocated($finder));
+
+        $city = $this->driver->findElement($finder);
+        $this->assertStringContainsString($this->userCity, $city->getText());
+
+        $this->driver->executeScript('sauce:job-result=passed');
+
+        $this->driver->quit();
+    }
 }
