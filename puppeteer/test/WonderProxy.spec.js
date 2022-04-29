@@ -39,9 +39,9 @@ async function getProxiedBrowser(server, options = {}) {
 }
 
 async function getAuthenticatedPage(browser) {
-    // make sure to set WONDERPROXY_USER and WONDERPROXY_PASS in your environment
+    // make sure to set WONDERPROXY_USER and WONDERPROXY_TOKEN in your environment
     const username = process.env.WONDERPROXY_USER;
-    const password = process.env.WONDERPROXY_PASS;
+    const password = process.env.WONDERPROXY_TOKEN;
 
     if (!username || !password) {
         throw new Error('Proxy credentials are missing');

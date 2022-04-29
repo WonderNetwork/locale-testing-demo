@@ -28,7 +28,7 @@ supposed to from a few different places around the world.
 4. The tests will pull your WonderProxy credentials from environment variables:
    ```
    $ export WONDERPROXY_USER=<your WonderProxy username>
-   $ export WONDERPROXY_PASS=<your WonderProxy password>
+   $ export WONDERPROXY_TOKEN=<your WonderProxy token>
    ```
 5. Our demo tests use the **Albuquerque**, **Toronto**, and **Vancouver** WonderProxy
    locations, so make sure

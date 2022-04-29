@@ -11,8 +11,8 @@ if (!$env:sauce_username -or !$env:sauce_access_key) {
 }
 
 # check for wonderproxy creds
-if (!$env:wonderproxy_user -or !$env:wonderproxy_pass) {
-    "Set WONDERPROXY_USER and WONDERPROXY_PASS in your environment variables"
+if (!$env:wonderproxy_user -or !$env:wonderproxy_token) {
+    "Set WONDERPROXY_USER and WONDERPROXY_TOKEN in your environment variables"
     exit 2
 }
 
@@ -23,7 +23,7 @@ if (!(test-path "$bin")) {
     exit 3
 }
 
-# starting ports for sauce connect tunnels, incremented by one for each 
+# starting ports for sauce connect tunnels, incremented by one for each
 # tunnel started
 # https://docs.saucelabs.com/reference/sauce-connect/#on-the-same-machine
 $scport = 56692 # --scproxy-port
@@ -50,7 +50,7 @@ foreach ($server in $args) {
         -nonewwindow `
         -redirectstandardoutput "$processlog.out.log" `
         -redirectstandarderror "$processlog.error.log" `
-        -argumentlist "-u $env:sauce_username -k ""$env:sauce_access_key"" -p ""$server.wonderproxy.com:11000"" -w ""$($env:wonderproxy_user):$($env:wonderproxy_pass)"" -l ""$logfile"" -i $server --pidfile ""$pidfile"" --scproxy-port $scport -P $seport"
+        -argumentlist "-u $env:sauce_username -k ""$env:sauce_access_key"" -p ""$server.wonderproxy.com:11000"" -w ""$($env:wonderproxy_user):$($env:wonderproxy_token)"" -l ""$logfile"" -i $server --pidfile ""$pidfile"" --scproxy-port $scport -P $seport"
 
     $seconds = 0
     while (($seconds -lt 5000) -and !(test-path "$pidfile")) {

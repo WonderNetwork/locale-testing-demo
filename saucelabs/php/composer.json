@@ -1,6 +1,7 @@
 {
     "require": {
         "php-webdriver/webdriver": "^1",
-        "phpunit/phpunit": "^9"
+        "phpunit/phpunit": "^9",
+        "brianium/paratest": "^6.4"
     }
 }

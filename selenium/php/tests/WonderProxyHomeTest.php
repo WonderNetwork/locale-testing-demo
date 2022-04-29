@@ -23,7 +23,7 @@ class WonderProxyLocaleTest extends PHPUnit_Framework_TestCase {
             [
                 "--proxy=$proxy",
                 '--proxy-type=http',
-                '--proxy-auth='.getenv('WONDERPROXY_USER').':'.getenv('WONDERPROXY_PASS')
+                '--proxy-auth='.getenv('WONDERPROXY_USER').':'.getenv('WONDERPROXY_TOKEN')
             ]);
         return RemoteWebDriver::create($this->selenium, $capabilities);
     }
