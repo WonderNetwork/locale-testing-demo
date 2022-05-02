@@ -15,8 +15,8 @@ if [[ -z "$SAUCE_USERNAME" || -z "$SAUCE_ACCESS_KEY" ]]; then
 fi
 
 # check for wonderproxy creds
-if [[ -z "$WONDERPROXY_USER" || -z "$WONDERPROXY_PASS" ]]; then
-    echo "You need to set WONDERPROXY_USER and WONDERPROXY_PASS"
+if [[ -z "$WONDERPROXY_USER" || -z "$WONDERPROXY_TOKEN" ]]; then
+    echo "You need to set WONDERPROXY_USER and WONDERPROXY_TOKEN"
     exit 2
 fi
 
@@ -26,9 +26,8 @@ if [[ -z $(which sc) ]]; then
     exit 3
 fi
 
-# starting ports for sauce connect tunnels, incremented by one for each 
+# starting ports for sauce connect tunnels, incremented by one for each
 # tunnel started
-# https://docs.saucelabs.com/reference/sauce-connect/#on-the-same-machine
 scport=56692 # --scproxy-port
 seport=4445  # --se-port
 
@@ -55,12 +54,13 @@ for server; do
     sc \
        -u "$SAUCE_USERNAME" -k "$SAUCE_ACCESS_KEY" \
        -p "$server.wonderproxy.com:11000" \
-       -w "$WONDERPROXY_USER:$WONDERPROXY_PASS" \
+       -w "$WONDERPROXY_USER:$WONDERPROXY_TOKEN" \
        -l "$saucedir/$server.log" -i "$server" \
        --pidfile "$pidfile" \
        --scproxy-port "$scport" -P "$seport" \
+       --region us-west \
        > "$saucedir/$server.output.log" 2>&1 &
-    
+
     seconds=0
     while [[ "$seconds" -lt 50 && ! -f "$pidfile" ]]; do
         let "seconds += 1"

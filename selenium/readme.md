@@ -23,14 +23,14 @@ supposed to from a few different places around the world.
 
    ```
    $ export WONDERPROXY_USER=<your WonderProxy username>
-   $ export WONDERPROXY_PASS=<your WonderProxy password>
+   $ export WONDERPROXY_TOKEN=<your WonderProxy token>
    ```
 
 ## Running the tests
 
 ### PHP (`./php`)
 
-The PHP demo has been tested on PHP 5.6 and 7.1.
+The PHP demo has been tested on PHP 5.6 and 7.4.
 
 1. The PHP demo uses [Composer](https://getcomposer.org) to organize its
    dependencies:

@@ -16,7 +16,7 @@ class WonderProxyTest(unittest.TestCase):
         capabilities['phantomjs.cli.args'] = [
             '--proxy=' + proxy,
             '--proxy-type=http',
-            '--proxy-auth=' + evar.get('WONDERPROXY_USER') + ':' + evar.get('WONDERPROXY_PASS')
+            '--proxy-auth=' + evar.get('WONDERPROXY_USER') + ':' + evar.get('WONDERPROXY_TOKEN')
         ]
 
         return webdriver.Remote(

@@ -1,0 +1,34 @@
+apiVersion: v1alpha
+kind: playwright
+showConsoleLog: true
+defaults:
+  mode: sauce
+sauce:
+  region: us-west-1
+  concurrency: 2 # Controls how many suites are executed at the same time.
+playwright:
+  version: 1.20.2 # See https://docs.saucelabs.com/dev/cli/saucectl/#supported-frameworks-and-browsers for a list of supported versions.
+# Controls what files are available in the context of a test run (unless explicitly excluded by .sauceignore).
+rootDir: ./
+suites:
+  - name: "Firefox on Windows 10"
+    platformName: "Windows 10" # Only relevant when running a test against the sauce cloud.
+    testMatch: ['.*.js']
+    params:
+      browserName: "firefox"
+  - name: "Chromium on Mac 11"
+    mode: sauce
+    platformName: "mac 11.00"
+    testMatch: ['.*.js']
+    params:
+      browserName: "chromium"
+
+
+# Controls what artifacts to fetch when the suite on Sauce Cloud has finished.
+artifacts:
+  cleanup: true
+  download:
+    when: always
+    match:
+      - console.log
+    directory: ./artifacts/
