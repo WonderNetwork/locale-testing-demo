@@ -58,7 +58,7 @@ for server; do
        -l "$saucedir/$server.log" -i "$server" \
        --pidfile "$pidfile" \
        --scproxy-port "$scport" -P "$seport" \
-       --region us-west \
+       --region us-west -T \
        > "$saucedir/$server.output.log" 2>&1 &
 
     seconds=0

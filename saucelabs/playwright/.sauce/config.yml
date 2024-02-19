@@ -6,6 +6,8 @@ defaults:
 sauce:
   region: us-west-1
   concurrency: 2 # Controls how many suites are executed at the same time.
+  tunnel:
+    name: albuquerque
 playwright:
   version: 1.20.2 # See https://docs.saucelabs.com/dev/cli/saucectl/#supported-frameworks-and-browsers for a list of supported versions.
 # Controls what files are available in the context of a test run (unless explicitly excluded by .sauceignore).
